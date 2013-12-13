@@ -1,0 +1,248 @@
+<!--[*]
+[tt=main][/tt]
+
+[var=meta_title]Abricos.js - is an application framework[/var]
+[*]-->
+
+<style>
+#bd .content .breadcrumb {
+	display: none
+} 
+.hero {
+    text-align: center;
+    margin: 2em auto 3em;
+}
+.hero-titles {
+    font-family: "omnes-pro", sans-serif;
+    padding: 0 2em;
+}
+.hero h1 {
+    font-size: 400%;
+    margin: 0;
+    padding: 0;
+    color: #1f8dd6;
+    font-weight: 100;
+}
+.hero h2 {
+    font-weight: 100;
+    font-size: 120%;
+    margin: 0.02em 0 0.8em;
+    color: #666;
+}
+.hero-cta pre {
+    padding: 1em;
+    font-size: 100%;
+    border-left: 0;
+    border-right: 0;
+}
+a.pure-button-cta,
+a.pure-button-secondary {
+    font-size: 120%;
+    font-weight: bold;
+    margin: 0.25em 0;
+}
+
+a.pure-button-cta {
+    background: #1f8dd6;
+    color: white;
+    border: 1px solid #1f8dd6;
+}
+
+a.pure-button-secondary {
+    background: #fff;
+    color: #666;
+    border: 1px solid #ddd;
+}
+</style>
+
+<div class="hero">
+    <div class="hero-titles">
+        <h1>Abricos.js</h1>
+        <h2>
+        	Небольшой, но весьма эффективный JavaScript шаблонизатор c возможностью 
+        	локализации
+        </h2>
+    </div>
+
+    <div class="hero-cta">
+
+        <p>
+            <a href="/download/" class="pure-button pure-button-cta">Возможности в примерах</a>
+            <a href="https://github.com/abricos/abricos.js/" class="pure-button pure-button-secondary">Смотреть на GitHub</a>
+        </p>
+    </div>
+</div>
+<p>
+	Шаблонизатор создан в 2008 году для 
+	<a href="http://abricos.org">платформы Абрикос</a> (Open Source, GNU GPL-license), но в конце 2013 года JavaScript 
+	функции	шаблонизатора были выведены в отдельную библиотеку Abricos.js, чтобы 
+	предоставить всем желающим разработчикам использовать 
+	возможности шаблонизатора в своих проектах.
+</p>
+<p>
+	Abricos.js не привязан к какому либо фреймворку, поэтому вы можете использовать его совместно с <a href="http://yuilibrary.com/">YUI</a>, 
+	<a href="http://jquery.com/">JQuery</a> и т.п. 
+</p>
+
+<h2 class="content-subhead">Пример простого виджета</h2>
+<div class="example">
+	<div id="helloworld">Loading...</div>
+</div>
+<p>
+	Создадим на странице контейнер для отображения виджета:
+</p>
+
+<pre class="snippet" data-language="html"><code>&lt;div id=&quot;helloworld&quot;&gt;Loading...&lt;/div&gt;</code></pre>
+
+<h3 class="content-subhead">HTML шаблон</h3>
+<p>
+	Добавим на страницу невидимый HTML-элемент, который будет содержать 
+	текст шаблона для построения виджета. <br />
+	Этот HTML-элемент будет иметь тег <code>&lt;script&gt;</code>
+	со свойством <code>type="text/x-abricosjs-template"</code>. Такой HTML-элемент
+	будет полностью игнорирован браузером, потому как он не воспринимает тип
+	<code>text/x-abricosjs-template</code>. <br />
+	Подобный механизм является наиболее удобным для передачи текста шаблона в функции Abricos.js
+	подобных случаях, но не является обязательным. 
+</p>
+<pre class="snippet" data-language="html"><code>&lt;script id=&quot;abricosjs-template&quot; type=&quot;text/x-abricosjs-template&quot;&gt;
+&lt;!--{mywidget}--&gt;
+&lt;div id='{i#id}'&gt;
+	&lt;span id='{i#title}'&gt;{##title}&lt;/span&gt; &lt;br /&gt;
+	&lt;input id='{i#btnSet}' type='button' value='{##button.set}'/&gt;
+	&lt;input id='{i#btnClear}' type='button' value='{##button.clear}'/&gt;
+&lt;/div&gt;
+&lt;/script&gt;</code></pre>
+
+<h3 class="content-subhead">CSS</h3>
+<p>
+	Добавим текст CSS стиля по тому же принципу что и HTML шаблон.
+</p>
+<pre class="snippet" data-language="html"><code>&lt;script id=&quot;abricosjs-style&quot; type=&quot;text/x-abricosjs-style&quot;&gt;
+.helloWorldBold {
+	font-weight: bold; 
+	color: red;
+}
+&lt;/script&gt;</code></pre>
+
+<blockquote class="content-quote">
+	В данном случае логичнее добавить CSS стиль непосредственно в <code>&lt;style&gt;</code>,
+	но для демонстрации возможности мы добавляем CSS стиль виджета таким образом.
+</blockquote>
+
+<h3 class="content-subhead">JavaScript</h3>
+<pre class="snippet" data-language="js"><code>&lt;script&gt;
+Abricos.use(function(){
+
+	// Add template
+	// #abricosjs-template - identifier of the DOM element that contains the text template
+	Abricos.Template.add('#abricosjs-template');
+
+	// Add phrases of language
+	Abricos.Language.add('en', {
+		'mywidget': {
+			'title': 'Hello World!',
+			'button': {
+				'set': 'Set Style',
+				'clear': 'Clear Style'
+			}
+		}
+	});
+
+	// Add CSS Style
+	// abricosjs-style - identifier of the DOM element that contains the text CSS Style
+	Abricos.CSS.add('#abricosjs-style');
+
+	// Create a template manager
+	var tm = Abricos.Template.build();
+
+	// Get a container
+	var elContainer = document.getElementById('helloworld');
+	
+	// Add HTML code in the widget container
+	elContainer.innerHTML = tm.replace('mywidget');
+
+	
+	// Get DOM elements used the identifier from the template
+	// NOTE: TM.gel('title') equal TM.gel('mywidget.title')
+	var elTitle = tm.gel('mywidget.title')
+		elBtnSet = tm.gel('btnSet'),
+		elBtnClear = tm.gel('btnClear');
+	
+	// Set the style by clicking on the button
+	elBtnSet.onclick = function(){
+		elTitle.className = 'helloWorldBold';
+	};
+	
+	// Clear the style by clicking on the button
+	elBtnClear.onclick = function(){
+		elTitle.className = '';
+	};
+});
+&lt;/script&gt;</code></pre>
+
+<script id="abricosjs-template" type="text/x-abricosjs-template">
+<!--{mywidget}-->
+<div id='{i#id}'>
+	<span id='{i#title}'>{##title}</span> <br />
+	<input id='{i#btnSet}' type='button' value='{##button.set}'/>
+	<input id='{i#btnClear}' type='button' value='{##button.clear}'/>
+</div>
+</script>
+
+<script id="abricosjs-style" type="text/x-abricosjs-style">
+.helloWorldBold {
+	font-weight: bold; 
+	color: red;
+}
+</script>
+
+<script>
+Abricos.use(function(){
+
+	// Add template
+	// #abricosjs-template - identifier of the DOM element that contains the text template
+	Abricos.Template.add('#abricosjs-template');
+
+	// Add phrases of language
+	Abricos.Language.add('en', {
+		'mywidget': {
+			'title': 'Hello World!',
+			'button': {
+				'set': 'Set Style',
+				'clear': 'Clear Style'
+			}
+		}
+	});
+
+	// Add CSS Style
+	// abricosjs-style - identifier of the DOM element that contains the text CSS Style
+	Abricos.CSS.add('#abricosjs-style');
+
+	// Create a template manager
+	var tm = Abricos.Template.build();
+
+	// Get a container
+	var elContainer = document.getElementById('helloworld');
+	
+	// Add HTML code in the widget container
+	elContainer.innerHTML = tm.replace('mywidget');
+
+	
+	// Get DOM elements used the identifier from the template
+	// NOTE: TM.gel('title') equal TM.gel('mywidget.title')
+	var elTitle = tm.gel('mywidget.title')
+		elBtnSet = tm.gel('btnSet'),
+		elBtnClear = tm.gel('btnClear');
+	
+	// Set the style by clicking on the button
+	elBtnSet.onclick = function(){
+		elTitle.className = 'helloWorldBold';
+	};
+	
+	// Clear the style by clicking on the button
+	elBtnClear.onclick = function(){
+		elTitle.className = '';
+	};
+});
+</script>
