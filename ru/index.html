@@ -103,7 +103,7 @@ a.pure-button-secondary {
 	будет полностью игнорирован браузером, потому как он не воспринимает тип
 	<code>text/x-abricosjs-template</code>. <br />
 	Подобный механизм является наиболее удобным для передачи текста шаблона в функции Abricos.js
-	подобных случаях, но не является обязательным. 
+	в подобных случаях, но не является обязательным. 
 </p>
 <pre class="snippet" data-language="html"><code>&lt;script id=&quot;abricosjs-template&quot; type=&quot;text/x-abricosjs-template&quot;&gt;
 &lt;!--{mywidget}--&gt;
@@ -133,13 +133,17 @@ a.pure-button-secondary {
 <h3 class="content-subhead">JavaScript</h3>
 <pre class="snippet" data-language="js"><code>&lt;script&gt;
 Abricos.use(function(){
+	
+	var key = 'org.abricosjs.examples.page';
+	
+	// #abricosjs-template - identifier of the DOM element that contains the text template
+	var sTpl = Abricos.source('#abricosjs-template');
 
 	// Add template
-	// #abricosjs-template - identifier of the DOM element that contains the text template
-	Abricos.Template.add('#abricosjs-template');
+	Abricos.Template.add(key, sTpl);
 
 	// Add phrases of language
-	Abricos.Language.add('en', {
+	Abricos.Language.add(key, 'en', {
 		'mywidget': {
 			'title': 'Hello World!',
 			'button': {
@@ -149,12 +153,14 @@ Abricos.use(function(){
 		}
 	});
 
-	// Add CSS Style
 	// abricosjs-style - identifier of the DOM element that contains the text CSS Style
-	Abricos.CSS.add('#abricosjs-style');
+	var sCSS = Abricos.source('#abricosjs-style');
+
+	// Add CSS Style
+	Abricos.CSS.add(key, sCSS);
 
 	// Create a template manager
-	var tm = Abricos.Template.build();
+	var tm = new Abricos.TemplateManager(key);
 
 	// Get a container
 	var elContainer = document.getElementById('helloworld');
@@ -199,13 +205,17 @@ Abricos.use(function(){
 
 <script>
 Abricos.use(function(){
+	
+	var key = 'org.abricosjs.examples.page';
+	
+	// #abricosjs-template - identifier of the DOM element that contains the text template
+	var sTpl = Abricos.source('#abricosjs-template');
 
 	// Add template
-	// #abricosjs-template - identifier of the DOM element that contains the text template
-	Abricos.Template.add('#abricosjs-template');
+	Abricos.Template.add(key, sTpl);
 
 	// Add phrases of language
-	Abricos.Language.add('en', {
+	Abricos.Language.add(key, 'en', {
 		'mywidget': {
 			'title': 'Hello World!',
 			'button': {
@@ -215,12 +225,14 @@ Abricos.use(function(){
 		}
 	});
 
-	// Add CSS Style
 	// abricosjs-style - identifier of the DOM element that contains the text CSS Style
-	Abricos.CSS.add('#abricosjs-style');
+	var sCSS = Abricos.source('#abricosjs-style');
+
+	// Add CSS Style
+	Abricos.CSS.add(key, sCSS);
 
 	// Create a template manager
-	var tm = Abricos.Template.build();
+	var tm = new Abricos.TemplateManager(key);
 
 	// Get a container
 	var elContainer = document.getElementById('helloworld');
