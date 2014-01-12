@@ -1,0 +1,143 @@
+/* 
+ 
+ This style used by the site PureCSS
+ http://purecss.io/
+ Source Style: https://github.com/yui/pure-site
+ 
+ License
+ This software is free to use under the Yahoo! Inc. BSD license. 
+ See the LICENSE (https://github.com/yui/pure-site/blob/master/LICENSE.md) 
+ file for license text and copyright information.
+ 
+ */
+ 
+
+dt {
+    font-weight: bold;
+}
+dd {
+    margin: 0 0 10px 0;
+}
+
+ /* --------------------------
+  * Content Module Styles
+  * --------------------------
+ */
+
+/* The content div is placed as a wrapper around all the docs */
+    .content p {
+        line-height: 1.6em;
+        /* font-size: 1.125em;/**/
+    }
+
+    .content .content-subhead {
+        margin: 50px 0 20px 0;
+        font-weight: 300;
+        /*color: #888; /**/
+        position: relative;
+    }
+
+    .content .content-spaced {
+        line-height: 1.8em;
+    }
+
+    /* A code snippet that has been syntax highlighted */
+    .content .snippet {
+        margin: 1.3em 0 1em;
+        padding: 1.3em;
+    }
+
+    .content .content-quote {
+        font-family: "Georgia", serif;
+        color: #666;
+        font-style: italic;
+        line-height: 1.8em;
+        border-left: 5px solid #ddd;
+        padding-left: 1.5em;
+    }
+
+    .content-link {
+        position: absolute;
+        top: 0;
+        right: 0;
+        display: block;
+        height: 100%;
+        width: 20px;
+        background: transparent url('/img/link-icon.png') no-repeat center center;
+        background-size: 20px 20px;
+    }
+
+    @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+        .content-link {
+            background-image: url('/img/link-icon@2x.png');
+        }
+    }
+
+/* --------------------------
+ * Footer Module Styles
+ * --------------------------
+*/
+.legal {
+    font-size: 87.5%;
+    border-top: 1px solid #eee;
+    padding: 0.5em 1.1429em;
+    background: rgb(250, 250, 250);
+    line-height: 1.6em;
+}
+
+    .legal-license {
+        margin: 0;
+    }
+    .legal-copyright,
+    .legal-links {
+        text-align: right;
+        margin: 0;
+    }
+    .legal-links {
+        list-style: none;
+        padding: 0;
+    }
+    .legal-logo {
+        text-align: center;
+    }
+
+/* ---------------------
+ * Smaller Module Styles
+ * ---------------------
+*/
+
+/* example code blocks */
+.example-snippet {
+    margin: 2em 0;
+    font-size: 85%;
+}
+
+/* green call to action button class */
+.notice {
+    background-color: #61B842;
+    color: white;
+}
+
+.pure-button {
+    font-family: inherit;
+}
+a.pure-button-primary {
+    color: white;
+}
+
+.muted {
+    color: #ccc;
+}
+
+/* --------------------------
+ * Addition by abricos.js
+ * --------------------------
+*/
+
+ .content .example {
+    border-radius: 4px;
+    box-shadow: 0 0 5px #BFBFBF;
+    padding: 1em;
+	font-size: 15px;
+ 	margin-bottom: 2em;	
+}

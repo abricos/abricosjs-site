@@ -1,0 +1,143 @@
+<!--[*]
+[var=meta_title][/var][var=meta_keys][/var][var=meta_desc][/var]
+[ph=sys:meta_title][/ph][ph=sys:meta_keys][/ph][ph=sys:meta_desc][/ph]
+[ph=sys:site_name]Abricos.js[/ph]
+[ph=sys:site_title]JavaScript Framework[/ph]
+
+[bkvar=ttowner]default[/bkvar]
+[bkvar=js][/bkvar]
+[bkvar=css][/bkvar]
+
+[mod=sys]jsvar[/mod]
+[mod=rss]meta[/mod]
+
+[var=version][/var]
+[var=jsyui][/var]
+
+[mod=sitemap]hmenu,breadcrumb[/mod]
+[mod=user]userline[/mod]
+
+[mcss=sys]widget.css[/mcss] // Будет удалет. Оставлен для совместимости
+
+[ph=sys:counter][/ph]
+[ph=sys:langwidget][/ph]
+
+[*]--><!DOCTYPE html>
+<html lang="ru" class="yui3-loading">
+<head>
+	<title>[var]meta_title[/var]</title>
+	<meta name="keywords" content="[var]meta_keys[/var]">
+	<meta name="description" content="[var]meta_desc[/var]">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<link href="/gzip.php?file=/css/pure/pure-min.css&v=[var]version[/var]" rel="stylesheet" >
+	<link href="/tt/[bkvar]ttowner[/bkvar]/css/main.css?v=0.4" type="text/css" rel="stylesheet">
+
+	[mod]sys:jsvar[/mod]
+	
+	<link href="/tt/[bkvar]ttowner[/bkvar]/css/main.css?v=0.1" type="text/css" rel="stylesheet" />
+	<link href="/tt/[bkvar]ttowner[/bkvar]/css/main2.css?v=0.1" type="text/css" rel="stylesheet" />
+	<link href="/tt/[bkvar]ttowner[/bkvar]/css/baby-blue.css?v=0.1" type="text/css" rel="stylesheet" />
+	
+	[bkvar]css[/bkvar]
+
+	[bkvar]js[/bkvar]
+
+	<link rel="stylesheet" href="/tt/[bkvar]ttowner[/bkvar]/css/override.css?v=0.1" type="text/css" />
+
+	[mod]rss:meta[/mod]
+	
+	<script src="/tt/[bkvar]ttowner[/bkvar]/js/rainbow-custom.min.js"></script>
+	
+	[ph]sys:counter[/ph]
+	
+</head>
+<body>
+
+	<div id="doc">
+		<div id="hd"><header>
+			<div class="tline">
+				<div class="gwrap">
+					<div class="pure-g">
+					
+						<div class="pure-u-1-4">
+							<h1 class="site-name">
+								<a href="/">[ph]sys:site_name[/ph]</a>
+							</h1>
+						</div>
+						<div class="pure-u-1-2">
+							<div class="site-desc">
+								[ph]sys:site_title[/ph]
+							</div>
+						</div>
+
+						<div class="pure-u-1-4 langblock">
+							[ph]sys:langwidget[/ph]
+						</div>						
+					</div>
+					<div id="userauthblock" style="display:none">
+						<div class="small smalluserblock">
+							[mod]user:userline[/mod]
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="mline">
+				<div class="gwrap">
+					[mod]sitemap:hmenu[/mod]
+				</div>
+			</div>
+		</header></div>
+		
+		<div id="bd">
+			<div class="gwrap">
+				<div class="pure-g">
+					<div class="pure-u-1">
+						<div class="content">
+							[mod]sitemap:breadcrumb[/mod]
+							[tt]content[/tt]
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<div id="ft" class="legal pure-g-r">
+			<div class="gwrap">
+				<div id="footer-container" class="">
+					<div class="pure-u-2-5">
+						<div class="l-box">
+							<p class="legal-license">
+								This site is built with using Abricos.js v0.1<br> All code
+								on this site is licensed under the <a
+									href="https://github.com/abricos/abricos.js/blob/master/LICENSE">MIT
+									License (MIT)</a> unless stated otherwise.
+							</p>
+						</div>
+					</div>
+					<div class="pure-u-1-5">
+						<div class="l-box legal-logo">
+							<a href="http://abricosjs.org/"> <img width="50" height="50"
+								alt="Abricos logo" src="/tt/[bkvar]ttowner[/bkvar]/img/logo-footer.png">
+							</a>
+						</div>
+					</div>
+					<div class="pure-u-2-5">
+						<div class="l-box">
+							<ul class="legal-links">
+								<li><a href="https://github.com/abricos/abricos.js">GitHub Project</a></li>
+							</ul>
+							<p class="legal-copyright">
+								&copy; 2013 Abricos.js. All rights reserved<br />
+								Powered by <a href="http://abricos.org" title="Abricos - Content Management System (CMS), Web Application Platform (WebOS)">Abricos Platform</a>
+							</p>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
